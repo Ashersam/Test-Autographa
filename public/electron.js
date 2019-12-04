@@ -1,8 +1,7 @@
-
 const path = require('path');
 const { app, Menu, ipcMain } = require('electron');
 const { autoUpdater } = require('electron-updater');
-
+let mainWindow;
 // import settings from 'electron-settings';
 const {
   createWindow,
@@ -180,7 +179,7 @@ app.on('activate', () => {
 app.on('ready', async () => {
   // dbUtil.dbSetupAll();
   const splashWindow = createSplashWindow();
-  const mainWindow = createMainWindow();
+  mainWindow = createMainWindow();
   autoUpdater.checkForUpdatesAndNotify();
   mainWindow.once('ready-to-show', () => {
     setTimeout(() => {
@@ -190,17 +189,16 @@ app.on('ready', async () => {
   });
   // await preProcess();
 });
-let newmainWindow = createMainWindow();
 
 ipcMain.on('app_version', (event) => {
   event.sender.send('app_version', { version: app.getVersion() });
 });
 
 autoUpdater.on('update-available', () => {
-  newmainWindow.webContents.send('update_available');
+  mainWindow.webContents.send('update_available');
 });
 autoUpdater.on('update-downloaded', () => {
-  newmainWindow.webContents.send('update_downloaded');
+  mainWindow.webContents.send('update_downloaded');
 });
 
 ipcMain.on('restart_app', () => {

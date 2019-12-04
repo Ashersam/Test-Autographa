@@ -7,7 +7,7 @@
 // // const MuiThemeProvider = require ('material-ui/styles/MuiThemeProvider')
 // // const getMuiTheme = require('material-ui/styles/getMuiTheme')
 import React from 'react';
-import  NavBar  from '../components/Navbar';
+import NavBar from '../components/Navbar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
@@ -17,7 +17,7 @@ import it from 'react-intl/locale-data/it';
 import { observer } from "mobx-react";
 import AutographaStore from "../components/AutographaStore";
 import dbUtil from '../util/DbUtil';
-const i18n = new(require('../translations/i18n'))();
+const i18n = new (require('../translations/i18n'))();
 const refDb = require("../util/data-provider").referenceDb();
 addLocaleData([...en, ...es, ...fr, ...it]);
 // Define user's language. Different browsers have the user locale defined
@@ -29,52 +29,52 @@ addLocaleData([...en, ...es, ...fr, ...it]);
 @observer
 class Page extends React.Component {
 
-	constructor(props){
+	constructor(props) {
 		super(props);
-	    this.state = {appLang: '', dbsetup: false}
-	    i18n.getLocale().then((lang) => {
+		this.state = { appLang: '', dbsetup: false }
+		i18n.getLocale().then((lang) => {
 			AutographaStore.appLang = lang;
-	    });
-	    i18n.currentLocale().then((res) => {
+		});
+		i18n.currentLocale().then((res) => {
 			AutographaStore.currentTrans = res;
-        })
-        
+		})
 
-    }
-    componentDidMount() {
-        dbUtil.dbSetupAll().then((res) => {
-            this.setState({dbsetup: res})
-        }).catch((err) => {
-            this.setState({dbsetup: false})
 
-        })
-    }
-    
-	componentWillMount(){
+	}
+	componentDidMount() {
+		dbUtil.dbSetupAll().then((res) => {
+			this.setState({ dbsetup: res })
+		}).catch((err) => {
+			this.setState({ dbsetup: false })
+
+		})
+	}
+
+	componentWillMount() {
 		refDb.get('activeRefs').then((doc) => {
-            Object.assign(AutographaStore.activeRefs, doc.activeRefs)
-        }, (err) => {
-        	console.log(err)
-        });
-	}   
-	
+			Object.assign(AutographaStore.activeRefs, doc.activeRefs)
+		}, (err) => {
+			console.log(err)
+		});
+	}
 
-	render(){
-		if(Object.keys(AutographaStore.currentTrans).length === 0){
+
+	render() {
+		if (Object.keys(AutographaStore.currentTrans).length === 0) {
 			return (<div></div>)
-        }
-        if(this.state.dbsetup === false) {
-            return(<div></div>)
-        }
-        
-	    return (
-	    	<IntlProvider locale = 'en' key = {AutographaStore.appLang} messages = {AutographaStore.currentTrans} >
-			    <MuiThemeProvider>
-			    	<NavBar /> 
-			    </MuiThemeProvider>
-	     	</IntlProvider>
-	    )
-	} 
+		}
+		if (this.state.dbsetup === false) {
+			return (<div></div>)
+		}
+
+		return (
+			<IntlProvider locale='en' key={AutographaStore.appLang} messages={AutographaStore.currentTrans} >
+				<MuiThemeProvider>
+					<NavBar />
+				</MuiThemeProvider>
+			</IntlProvider>
+		)
+	}
 };
 
 module.exports = Page

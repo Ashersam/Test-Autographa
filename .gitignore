@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 bower_components
+electron-builder.yml
 
 # ignore everything in 'app' folder what had been generated from 'src' folder
 /app/app.js
