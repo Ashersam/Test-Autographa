@@ -1,7 +1,7 @@
 {
   "name": "autographa-lite",
   "description": "A Bible translation editor for everyone.",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "main": "public/electron.js",
   "author": "Friends of Agape <mail@joelmath.io>",
   "license": "MIT",
@@ -39,7 +39,8 @@
     "transform-runtime": "0.0.0"
   },
   "build": {
-    "extends": "react-cra",
+    "asar": false,
+    "extends": null,
     "appId": "oa.autographa.lite",
     "files": [
       "build/**/*.*",
@@ -64,8 +65,8 @@
       "icon": "resources/icon.png"
     },
     "publish": {
-    "provider": "github",
-    "token": "fdd75d5fdb44e5acb271c71cc493284a3ab8707a"
+      "provider": "github",
+      "token": "8139168ba3ba15c8aa18bf34c663ec6d16051ab8"
     }
   },
   "repository": {
