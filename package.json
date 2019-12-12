@@ -1,7 +1,7 @@
 {
   "name": "autographa-lite",
   "description": "A Bible translation editor for everyone.",
-  "version": "1.3.4",
+  "version": "1.0.1",
   "main": "public/electron.js",
   "author": "Friends of Agape <mail@joelmath.io>",
   "license": "MIT",
@@ -39,8 +39,7 @@
     "transform-runtime": "0.0.0"
   },
   "build": {
-    "asar": false,
-    "extends": null,
+    "extends": "react-cra",
     "appId": "oa.autographa.lite",
     "files": [
       "build/**/*.*",
@@ -63,10 +62,6 @@
         "deb"
       ],
       "icon": "resources/icon.png"
-    },
-    "publish": {
-      "provider": "github",
-      "token": "8139168ba3ba15c8aa18bf34c663ec6d16051ab8"
     }
   },
   "repository": {
@@ -84,6 +79,7 @@
   ],
   "scripts": {
     "start": "concurrently \"npm run react-start\" \"wait-on http://localhost:3000/ && cross-env NODE_ENV=development npm run electron-start\"",
+    "build": "npm run build:electron",
     "electron-start": "electron .",
     "electron-build": "electron-packager ./build --out=dist",
     "react-start": "craco start",
@@ -93,8 +89,8 @@
     "build:electron": "craco build --config craco.config.js main=build/electron.js",
     "preelectron-pack": "npm run build",
     "electron-pack": "electron-builder build",
-    "build": "electron-builder build --win --publish never",
-    "deploy": "electron-builder build --win --publish always"
+    "electronbuild": "electron-builder --win --linux --publish never",
+    "deploy": "electron-builder --x64 --win --linux -p always"
   },
   "eslintConfig": {
     "extends": "react-app"
