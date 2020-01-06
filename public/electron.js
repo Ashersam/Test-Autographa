@@ -8,9 +8,14 @@ const {
   defineWindow,
   getWindow
 } = require(path.join(__dirname, 'electronWindows.js'));
+const log = require('electron-log');
 
 //const dbUtil = require('../src/util/DbUtil');
 
+// configure logging
+autoUpdater.logger = log;
+autoUpdater.logger.transports.file.level = 'info';
+log.info('App starting...');
 //dbUtil.dbSetupAll()
 const isMac = process.platform === 'darwin'
 
@@ -65,7 +70,6 @@ function createSplashWindow() {
   } else {
     window.loadURL(`file://${path.join(__dirname, '/splash.html')}`);
   }
-
   return window;
 }
 
@@ -156,6 +160,7 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
   }
+  autoUpdater.checkForUpdates();
 });
 
 app.on('activate', () => {
@@ -180,7 +185,6 @@ app.on('ready', async () => {
   // dbUtil.dbSetupAll();
   const splashWindow = createSplashWindow();
   mainWindow = createMainWindow();
-  autoUpdater.checkForUpdatesAndNotify();
   mainWindow.once('ready-to-show', () => {
     setTimeout(() => {
       splashWindow.close();
