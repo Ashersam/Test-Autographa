@@ -4,7 +4,7 @@
 ## Phase 1 
 *  [ ] Basic DB setup with refernceDB, translationDB and lookupsDB
 > files need to be added are : data_provider.js and Db_util
-*  [ ] Adding preloaded reference (JSON) & also verify and add [Silhouette](https://en.wikipedia.org/wiki/Silhouette)
+*  [ ] Adding preloaded reference bibles (JSON) & also verify, ref_config and add bible [Silhouette](https://en.wikipedia.org/wiki/Silhouette)
 *  [ ] Update App.js File with db Setup on mount except react-intl and call the higher order component such as NavBar.js 
 *  [ ] Create a Refernce directroy and make core function with all the setup for reference content(refer nav bar for refercence content db update and design of html content)
 >  files need to be added:
@@ -37,3 +37,13 @@
 ## Phase 3
 * [ ] Create Footer Component with layout functionality and font slider and save translation function
 > file: Footer.js
+* [ ] Connect the componets with corresponding icons and call accordingly each componets in navbar
+* [ ] Add component booknameEditor, BookChapterNavigator with all corresponding functionality and also diff checker component
+> file: BookChapterNavigator.js, DiffChecker, BookNameEditor
+* [ ] Create Download Component with all supp component(usfm export, 1col html, 2colhtml) and its supporting core files like Json to html and its design
+> USFM, 1-HTML, 2-HTML, Export Html, Export CSS etc
+* [ ] Create and add translation Help component with language selector
+* [ ] Adding sync feature with corresponding helper files and UI
+    * [ ] Paratext sync 
+    * [ ] Gitea component
+* [ ] Making app language Component and pass id and proprs for all the translations and update parent app.js file accordingly  
