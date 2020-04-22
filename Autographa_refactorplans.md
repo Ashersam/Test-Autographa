@@ -1,6 +1,6 @@
 # [Autographa](https://www.autographa.org/)
-> Class component will be enhanced to functional components with react hooks 
-> Component Styling will be done with react material UI (makestyles, usestyles...)
+> Class component will be enhanced to functional components with react hooks.
+> Component styling will be done with react material UI (makestyles, usestyles...)
 ## Phase 1 
 *  [ ] Basic DB setup with refernceDB, translationDB and lookupsDB
 > files need to be added are : data_provider.js and Db_util
