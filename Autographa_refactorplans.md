@@ -1,5 +1,5 @@
 # [Autographa](https://www.autographa.org/)
-> Class component will be enhanced to functional components with react hooks
+> Class component will be enhanced to functional components with react hooks 
 > Component Styling will be done with react material UI (makestyles, usestyles...)
 ## Phase 1 
 *  [ ] Basic DB setup with refernceDB, translationDB and lookupsDB
